@@ -41,10 +41,17 @@ router.post("/signin", async (req, res) => {
       return res.status(400).json({ error: "PLZ filled the data " });
     }
     const userLogin = await User.findOne({ email: email });
-    if (!userLogin) {
-      res.status(400).json({ error: "user error" });
+
+    if (userLogin) {
+      const isMatch = await bcrypt.compare(password, userLogin.password);
+
+      if (!isMatch) {
+        res.status(400).json({ error: "invalid credentials" });
+      } else {
+        res.json({ message: "user signin successfully" });
+      }
     } else {
-      res.json({ message: "usser signin successfully" });
+      res.status(400).json({ error: "invalid credentials" });
     }
   } catch (err) {
     console.log(err);
