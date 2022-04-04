@@ -52,7 +52,11 @@ router.post("/signin", async (req, res) => {
         expires: new Date(Date.now() + 2419200000),
         httpOnly: true,
       });
+<<<<<<< Updated upstream
       
+=======
+
+>>>>>>> Stashed changes
       if (!isMatch) {
         res.status(400).json({ error: "invalid credentials" });
       } else {

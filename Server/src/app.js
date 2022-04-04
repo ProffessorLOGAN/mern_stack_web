@@ -7,7 +7,11 @@ const app = express();
 // dotenv config
 
 dotenv.config({ path: "./config/config.env" });
+<<<<<<< Updated upstream
 require("../src/db/database");
+=======
+require("./db/database");
+>>>>>>> Stashed changes
 app.use(express.json());
 
 const PORT = process.env.PORT;
